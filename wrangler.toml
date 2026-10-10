@@ -4,3 +4,8 @@ compatibility_date = "2024-01-01"
 
 [observability]
 enabled = true
+
+[[rules]]
+type = "Text"
+globs = ["**/*.html", "**/*.css"]
+fallback = false

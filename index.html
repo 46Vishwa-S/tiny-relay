@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TINY Robot Interface</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="card">
+        <h1>?? TINY Robot</h1>
+        <p>This is the basic web interface served directly from the Worker.</p>
+        <div id="status">Connecting to WebSocket...</div>
+        <button id="testBtn">Test Connection</button>
+    </div>
+    <script>
+        const ws = new WebSocket((window.location.protocol === 'https:' ? 'wss://' : 'ws://') + window.location.host + '/ws?role=browser');
+        const statusEl = document.getElementById('status');
+        ws.onopen = () => { statusEl.innerText = "? Connected to Cloudflare Relay"; statusEl.style.color = "#10b981"; };
+        ws.onclose = () => { statusEl.innerText = "? Disconnected"; statusEl.style.color = "#ef4444"; };
+        document.getElementById('testBtn').onclick = () => {
+            if(ws.readyState === WebSocket.OPEN) {
+                alert("WebSocket is active!");
+            } else {
+                alert("WebSocket is not connected.");
+            }
+        }
+    </script>
+</body>
+</html>
