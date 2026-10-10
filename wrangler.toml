@@ -1,0 +1,6 @@
+name = "tiny-relay"
+main = "tiny-relay.js"
+compatibility_date = "2024-01-01"
+
+[observability]
+enabled = true
